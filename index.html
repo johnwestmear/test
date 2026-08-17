@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Christmas Party 2026 — RSVP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --sand:#F4EEDD;
+    --sand-dark:#E8DFC5;
+    --ink:#16232B;
+    --teal:#0F4A4A;
+    --teal-deep:#0A3435;
+    --coral:#E8613D;
+    --coral-dark:#9A3A22;
+    --green:#3F6B44;
+    --green-dark:#294A2D;
+    --gold:#C08A31;
+    --white:#FFFDF8;
+    --line:rgba(22,35,43,0.14);
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--sand);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .page{max-width:900px;margin:0 auto;}
+
+  /* HERO */
+  .hero{
+    background:var(--teal);
+    color:var(--sand);
+    padding:72px 28px 128px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:64px;
+    background:
+      radial-gradient(circle at 10px 0, transparent 12px, var(--teal) 13px) 0 0/40px 100% repeat-x;
+  }
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--sand-dark);
+    margin:0 0 28px;
+    font-weight:600;
+  }
+  .hero-date{
+    display:flex;
+    align-items:baseline;
+    justify-content:center;
+    gap:14px;
+    font-family:'Fraunces',serif;
+  }
+  .hero-date .day{font-size:96px;font-weight:340;line-height:0.9;}
+  .hero-date .rest{text-align:left;font-size:22px;font-weight:500;letter-spacing:0.04em;}
+  .hero-date .rest span{display:block;}
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:40px;
+    line-height:1.15;
+    margin:28px 0 14px;
+  }
+  .hero-sub{
+    max-width:480px;
+    margin:0 auto;
+    font-size:16px;
+    color:var(--sand-dark);
+    line-height:1.6;
+  }
+
+  /* SCHEDULE */
+  .schedule{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+    padding:0 28px;
+    margin-top:-80px;
+    position:relative;
+    z-index:2;
+  }
+  @media (max-width:640px){
+    .schedule{grid-template-columns:1fr;}
+    .hero-date .day{font-size:72px;}
+    h1{font-size:30px;}
+  }
+  .event-card{
+    background:var(--white);
+    border-radius:20px;
+    padding:28px 24px 26px;
+    box-shadow:0 18px 40px -22px rgba(10,20,25,0.45);
+  }
+  .event-time{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:var(--teal);
+  }
+  .event-time-sub{
+    display:block;
+    font-weight:400;
+    text-transform:none;
+    color:#6b6a63;
+    font-size:12.5px;
+    margin-top:2px;
+  }
+  .event-art{
+    height:96px;
+    margin:16px 0 6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .event-card h2{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:22px;
+    margin:6px 0 4px;
+  }
+  .event-card p.desc{
+    margin:0 0 14px;
+    font-size:14px;
+    color:#5c5b54;
+    line-height:1.5;
+  }
+  .chip{
+    display:inline-block;
+    background:#FBEAE3;
+    color:var(--coral-dark);
+    font-size:12.5px;
+    font-weight:600;
+    padding:6px 12px;
+    border-radius:100px;
+    margin-bottom:14px;
+  }
+  .venue-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--teal);
+    text-decoration:none;
+    border-bottom:1.5px solid var(--teal);
+    padding-bottom:1px;
+  }
+
+  /* RSVP */
+  .rsvp{
+    padding:88px 28px 40px;
+  }
+  .rsvp-head{text-align:center; max-width:520px; margin:0 auto 8px;}
+  .rsvp h2{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:30px;
+    margin:0 0 10px;
+  }
+  .rsvp-deadline{
+    font-size:15px;
+    color:#5c5b54;
+    margin:0 0 40px;
+  }
+  .rsvp-deadline strong{color:var(--ink);}
+
+  form{
+    background:var(--white);
+    border-radius:20px;
+    padding:32px 28px 30px;
+    box-shadow:0 18px 40px -26px rgba(10,20,25,0.4);
+    max-width:640px;
+    margin:0 auto;
+  }
+  .field{margin-bottom:20px;}
+  .field label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:7px;
+    color:var(--ink);
+  }
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  @media (max-width:520px){.two-col{grid-template-columns:1fr;}}
+  input[type=text], input[type=email], textarea{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    padding:11px 13px;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    background:var(--sand);
+    color:var(--ink);
+  }
+  input:focus, textarea:focus{
+    outline:none;
+    border-color:var(--teal);
+    box-shadow:0 0 0 3px rgba(15,74,74,0.15);
+  }
+  textarea{resize:vertical;min-height:80px;font-family:'Inter',sans-serif;}
+
+  .staff-block{
+    border-top:1.5px solid var(--line);
+    border-bottom:1.5px solid var(--line);
+    padding:20px 0;
+    margin-bottom:22px;
+  }
+  .staff-block > label{font-size:13px;font-weight:600;margin-bottom:4px;display:block;}
+  .staff-hint{font-size:12.5px;color:#78766c;margin:0 0 14px;}
+  .staff-row{
+    display:grid;
+    grid-template-columns:1fr auto auto;
+    align-items:center;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .staff-row input[type=text]{margin:0;}
+  .golf-check{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:12.5px;
+    font-weight:500;
+    color:var(--green-dark);
+    white-space:nowrap;
+  }
+  .golf-check input{width:15px;height:15px;accent-color:var(--green);}
+  .remove-staff{
+    background:none;
+    border:none;
+    color:#a09e93;
+    font-size:20px;
+    line-height:1;
+    cursor:pointer;
+    padding:2px 6px;
+  }
+  .remove-staff:hover{color:var(--coral-dark);}
+  .remove-staff:focus-visible, .add-staff:focus-visible, .submit-btn:focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:2px;
+  }
+  .add-staff{
+    background:none;
+    border:1.5px dashed var(--line);
+    color:var(--teal);
+    font-weight:600;
+    font-size:13.5px;
+    padding:9px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    width:100%;
+    margin-top:4px;
+  }
+  .add-staff:hover{background:var(--sand);}
+
+  .submit-btn{
+    width:100%;
+    background:var(--teal);
+    color:var(--sand);
+    border:none;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    padding:14px;
+    border-radius:10px;
+    cursor:pointer;
+    margin-top:6px;
+  }
+  .submit-btn:hover{background:var(--teal-deep);}
+  .submit-btn:disabled{opacity:0.6;cursor:default;}
+
+  .form-error{
+    font-size:13px;
+    color:var(--coral-dark);
+    margin:-8px 0 16px;
+    display:none;
+  }
+
+  .thanks{
+    display:none;
+    max-width:640px;
+    margin:0 auto;
+    background:var(--white);
+    border-radius:20px;
+    padding:40px 28px;
+    text-align:center;
+    box-shadow:0 18px 40px -26px rgba(10,20,25,0.4);
+  }
+  .thanks h3{font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin:0 0 8px;}
+  .thanks p{color:#5c5b54;font-size:14.5px;margin:0;}
+
+  footer{
+    text-align:center;
+    padding:44px 28px 56px;
+    font-size:13px;
+    color:#8b8a7f;
+  }
+  footer a{color:var(--teal);font-weight:600;text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <p class="eyebrow">Tarrant Building — Christmas Party</p>
+    <div class="hero-date">
+      <span class="day">04</span>
+      <span class="rest"><span>DEC</span><span>2026</span></span>
+    </div>
+    <h1>One day, two settings</h1>
+    <p class="hero-sub">Swing a club at Velocity Golf, then put your feet in the sand at Aanuka Beach. Coffs Harbour, from midday.</p>
+  </header>
+
+  <section class="schedule">
+    <article class="event-card">
+      <div class="event-time">12:00pm – 2:00pm</div>
+      <div class="event-art">
+        <svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="60" cy="80" rx="50" ry="7" fill="#EDE7D2"/>
+          <path d="M60 80 L60 18" stroke="#294A2D" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M61 18 L88 26 L61 34 Z" fill="#E8613D"/>
+          <circle cx="34" cy="72" r="6" fill="#F4EEDD" stroke="#C9C4AE" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <h2>Velocity Golf</h2>
+      <p class="desc">Indoor golf simulators in Coffs Harbour — private bays, no experience needed.</p>
+      <span class="chip" id="golf-chip">Checking spots…</span><br/>
+      <a class="venue-link" href="https://velocitygolf.com.au/" target="_blank" rel="noopener">View venue ↗</a>
+    </article>
+
+    <article class="event-card">
+      <div class="event-time">2:00pm – 5:00pm<span class="event-time-sub">Food and drinks package, 2–4pm</span></div>
+      <div class="event-art">
+        <svg width="130" height="90" viewBox="0 0 130 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="24" r="14" fill="#F4EEDD"/>
+          <path d="M0 58 Q20 46 40 58 T80 58 T130 58 V90 H0 Z" fill="#0F4A4A"/>
+          <path d="M0 68 Q20 58 40 68 T80 68 T130 68 V90 H0 Z" fill="#0A3435"/>
+        </svg>
+      </div>
+      <h2>Aanuka Beach House</h2>
+      <p class="desc">Beachfront bar and dining at Diggers Beach — wind down with food and drinks by the sand.</p>
+      <a class="venue-link" href="https://aanukabeachhouse.com.au/" target="_blank" rel="noopener">View venue ↗</a>
+    </article>
+  </section>
+
+  <section class="rsvp">
+    <div class="rsvp-head">
+      <h2>RSVP</h2>
+      <p class="rsvp-deadline">Please respond by <strong>Friday, 20 November 2026</strong>. One RSVP per company, please.</p>
+    </div>
+
+    <form id="rsvp-form" name="rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="rsvp" />
+      <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+      <div class="two-col">
+        <div class="field">
+          <label for="company">Company name</label>
+          <input type="text" id="company" name="company" required />
+        </div>
+        <div class="field">
+          <label for="contact-name">Contact name</label>
+          <input type="text" id="contact-name" name="contact-name" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="contact-email">Contact email</label>
+        <input type="email" id="contact-email" name="contact-email" required />
+      </div>
+
+      <div class="staff-block">
+        <label>Staff attending</label>
+        <p class="staff-hint" id="staff-hint">Add each person joining, and tick the box if they're playing golf (12–2pm, limited to 15 spots total across all companies).</p>
+        <div id="staff-list"></div>
+        <button type="button" class="add-staff" id="add-staff">+ Add staff member</button>
+      </div>
+
+      <div class="field">
+        <label for="notes">Notes for us</label>
+        <textarea id="notes" name="notes" placeholder="Dietary needs, late arrivals, anything else we should know"></textarea>
+      </div>
+
+      <p class="form-error" id="form-error">Add at least one staff member with a first name before submitting.</p>
+
+      <input type="hidden" name="staff-summary" id="staff-summary" />
+      <input type="hidden" name="staff-details" id="staff-details" />
+
+      <button type="submit" class="submit-btn" id="submit-btn">Send RSVP</button>
+    </form>
+
+    <div class="thanks" id="thanks">
+      <h3>RSVP received</h3>
+      <p>Thanks — we've got your headcount for December 4th. See you at the golf, or the beach, or both.</p>
+    </div>
+  </section>
+
+  <footer>
+    Questions? Email <a href="mailto:admin@tarrantbuilding.com.au">admin@tarrantbuilding.com.au</a>
+  </footer>
+</div>
+
+<form name="rsvp" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="rsvp" />
+  <input type="text" name="bot-field" />
+  <input type="text" name="company" />
+  <input type="text" name="contact-name" />
+  <input type="email" name="contact-email" />
+  <textarea name="notes"></textarea>
+  <input type="text" name="staff-summary" />
+  <textarea name="staff-details"></textarea>
+</form>
+
+<script>
+(function(){
+  var list = document.getElementById('staff-list');
+  var addBtn = document.getElementById('add-staff');
+  var form = document.getElementById('rsvp-form');
+  var thanks = document.getElementById('thanks');
+  var errorEl = document.getElementById('form-error');
+  var submitBtn = document.getElementById('submit-btn');
+  var golfChip = document.getElementById('golf-chip');
+  var rowCount = 0;
+
+  function renderGolfChip(data){
+    if(!data){
+      golfChip.textContent = '15 spots total — first in, best dressed';
+      return;
+    }
+    if(data.remaining <= 0){
+      golfChip.textContent = 'Golf is full — beach session still open';
+    } else {
+      golfChip.textContent = data.remaining + ' of ' + data.total + ' golf spots left';
+    }
+  }
+
+  function loadGolfSpots(){
+    fetch('/.netlify/functions/golf-spots')
+      .then(function(r){ return r.json(); })
+      .then(renderGolfChip)
+      .catch(function(){ renderGolfChip(null); });
+  }
+  loadGolfSpots();
+
+  function addRow(){
+    rowCount++;
+    var row = document.createElement('div');
+    row.className = 'staff-row';
+    row.innerHTML =
+      '<input type="text" class="staff-name" placeholder="First name" aria-label="Staff first name" />' +
+      '<label class="golf-check"><input type="checkbox" class="staff-golf" /> Playing golf</label>' +
+      '<button type="button" class="remove-staff" aria-label="Remove this person">&times;</button>';
+    row.querySelector('.remove-staff').addEventListener('click', function(){
+      row.remove();
+    });
+    list.appendChild(row);
+  }
+  addBtn.addEventListener('click', addRow);
+  addRow();
+
+  function encode(data){
+    return Object.keys(data).map(function(k){
+      return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]);
+    }).join('&');
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    errorEl.style.display = 'none';
+
+    var rows = Array.prototype.slice.call(list.querySelectorAll('.staff-row'));
+    var staff = rows.map(function(row){
+      var name = row.querySelector('.staff-name').value.trim();
+      var golf = row.querySelector('.staff-golf').checked;
+      return { name: name, golf: golf };
+    }).filter(function(s){ return s.name.length > 0; });
+
+    if(staff.length === 0){
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    var company = document.getElementById('company').value.trim();
+    var contactName = document.getElementById('contact-name').value.trim();
+    var contactEmail = document.getElementById('contact-email').value.trim();
+    var notes = document.getElementById('notes').value.trim();
+
+    var summary = staff.map(function(s){
+      return s.name + (s.golf ? ' (golf)' : '');
+    }).join(', ');
+    var golfCount = staff.filter(function(s){ return s.golf; }).length;
+
+    document.getElementById('staff-summary').value = summary;
+    document.getElementById('staff-details').value = JSON.stringify(staff);
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': 'rsvp',
+        'company': company,
+        'contact-name': contactName,
+        'contact-email': contactEmail,
+        'notes': notes,
+        'staff-summary': summary,
+        'staff-details': JSON.stringify(staff)
+      })
+    }).then(function(){
+      form.style.display = 'none';
+      thanks.style.display = 'block';
+      if(golfCount > 0){
+        return fetch('/.netlify/functions/golf-spots', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ count: golfCount })
+        }).then(function(r){ return r.json(); }).then(function(data){
+          renderGolfChip(data);
+          if(data.full){
+            var note = document.createElement('p');
+            note.style.fontSize = '13.5px';
+            note.style.color = '#9A3A22';
+            note.style.marginTop = '10px';
+            note.textContent = "Heads up: golf just hit capacity. We'll confirm your golfers directly.";
+            thanks.appendChild(note);
+          }
+        }).catch(function(){});
+      }
+    }).catch(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send RSVP';
+      errorEl.textContent = "Something went wrong sending that. Please try again, or email admin@tarrantbuilding.com.au directly.";
+      errorEl.style.display = 'block';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

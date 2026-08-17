@@ -4,7 +4,11 @@ const TOTAL_SPOTS = 15;
 const KEY = 'golf-used';
 
 exports.handler = async (event) => {
-  const store = getStore('christmas-party-2026');
+  const store = getStore({
+    name: 'christmas-party-2026',
+    siteID: process.env.BLOBS_SITE_ID,
+    token: process.env.BLOBS_TOKEN
+  });
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json'
